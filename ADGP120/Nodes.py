@@ -1,7 +1,7 @@
 import pygame
 from pygame.locals import *
 
-class Node:
+class Node(object):
 	def __init__(self, x, y):
 		self.f = None #movement cost plus estimated cost
 		self.g = None #movement cost, None = NULL
@@ -19,19 +19,19 @@ class Node:
 	def draw(self, screen, color):
 		margin = self.margin
 		color = [0,0,255] if (self.walkable) else [255,0,0]
-		pygame.draw.rect(screen, color, [self.left, self.top, self.width, self.height])
+		pygame.draw.rect(screen, color, [(self.left, self.top), (self.width, self.height)])
 	
 	def getF(self):
-		return self.h + self.g
+		return self.g + self.h
 	
 	def setWalk(self, walkable):
 		self.walkable = walkable
 		
-	def setG(self, val):
-		self.g = val
+	def setG(self, value):
+		self.g = value
 		
-	def setH(self, val):
-		self.h = val
+	def setH(self, value):
+		self.h = value
 		
 	def setWidth(self):
 		self.width = 20
