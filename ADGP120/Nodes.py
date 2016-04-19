@@ -4,13 +4,11 @@ from pygame.locals import *
 class Node(object):
 	def __init__(self, x, y):
 		self.f = None #movement cost plus estimated cost
-		self.g = None #movement cost, None = NULL
-		self.h = None #estimated cost, None = NULL
+		self.g = None #movement cost
+		self.h = None #estimated cost
 		self.width = 20
 		self.height = 20
 		self.margin = 5
-		#self.x = x
-		#self.y = y
 		self.left = (self.margin + self.width) * x + self.margin
 		self.top = (self.margin + self.height) * y + self.margin
 		self.position = (x, self.height - y)
