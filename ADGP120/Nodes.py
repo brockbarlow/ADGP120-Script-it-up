@@ -1,10 +1,10 @@
-import pygame
-from pygame.locals import *
+import pygame as gfx
+
 class Node(object):
 	def __init__(self, x, y):
-		self.f = None #movement cost plus estimated cost
-		self.g = None #movement cost
-		self.h = None #estimated cost
+		self.fCost = None
+		self.gCost = None 
+		self.hCost = None 
 		self.width = 20
 		self.height = 20
 		self.margin = 5
@@ -15,17 +15,23 @@ class Node(object):
 		self.parent = None
 		self.color = (255,255,255)
 		self.adjacent = []
+	
 	def draw(self, screen, color):
 		margin = self.margin
 		color = (0,0,255) if (self.walkable) else (255,0,0)
-		pygame.draw.rect(screen, color, [(self.left, self.top), (self.width, self.height)])
-	def getF(self):
-		return self.g + self.h
+		gfx.draw.rect(screen, color, [(self.left, self.top), (self.width, self.height)])
+	
+	def getFCost(self):
+		return self.gCost + self.hCost
+		
+	def getGCost(self, value)
+		self.gCost = value
+		
+	def getHCost(self, value)
+		self.hCost = value
+	
 	def setWalk(self, walkable):
 		self.walkable = walkable
-	def setG(self, value):
-		self.g = value	
-	def setH(self, value):
-		self.h = value
+	
 	def addAdjacent(self, value):
 		self.adjacent.append(value)

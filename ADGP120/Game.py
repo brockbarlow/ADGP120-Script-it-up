@@ -2,14 +2,12 @@ import Nodes
 from Nodes import *
 import AStar
 from AStar import *
-import pygame
-from pygame.locals import *
 
 def main():
-	pygame.init()
+	gfx.init()
 	window = [255,255]
-	screen = pygame.display.set_mode(window)
-	pygame.display.set_caption("ADGP120")
+	screen = gfx.display.set_mode(window)
+	gfx.display.set_caption("ADGP120")
 	
 	searchSpace = []
 	for x in range(10):
@@ -21,11 +19,11 @@ def main():
 			searchSpace.append(n)
 	
 	finished = False
-	clock = pygame.time.Clock()
+	clock = gfx.time.Clock()
 	
 	while not finished:
-		for event in pygame.event.get():
-			if event.type == pygame.QUIT:
+		for event in gfx.event.get():
+			if event.type == gfx.QUIT:
 				finished = True
 				
 		screen.fill([0,0,0])
@@ -34,7 +32,7 @@ def main():
 		for i in searchSpace:
 			i.draw(screen, [255,255,255])
 		
-		#pygame.display.filp()
+		gfx.display.flip()
 		
-	pygame.quit()
+	gfx.quit()
 main()
