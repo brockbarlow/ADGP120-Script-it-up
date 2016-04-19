@@ -10,21 +10,24 @@ class AStar(object):
 		self.searchNodes = searchSpace
 		
 	def draw(self, screen, startColor, goalColor):
-		startColor = [0,255,255]
-		goalColor = [0,255,0]
-		gfx.draw.rect(screen, startColor, [(self.startNode.left, self.startNode.top), (self.startNode.width, self.startNode.height)])
-		gfx.draw.rect(screen, goalColor, [(self.goalNode.left, self.goalNode.top), (self.goalNode.width, self.goalNode.height)])
+		startColor = (0,255,255)
+		goalColor = (0,255,0)
+		gfx.draw.rect(screen, startColor, (self.startNode.left, self.startNode.top, self.startNode.width, self.startNode.height))
+		gfx.draw.rect(screen, goalColor, (self.goalNode.left, self.goalNode.top, self.goalNode.width, self.goalNode.height))
 		
 	def run(self):
 		self.open.append(start)
 		while not self.open:
 			current = self.lowestF(self.open)
 		
+	def addNodes(self, start):
+		self.open.append(self.start)
+		
 	def lowestF(self, nodes):
-		lowestF = -1
-		nodeWithLowestF = None
+		lowestF = None
 		for node in nodes:
-			if (node.f > lowestF):
-				lowestF = node.f
-				nodeWithLowestF = node
-		return nodeWithLowestF
+			if (lowestF == None or node.getF() < lowestF.getF()):
+				lowestF = node
+		for node in Nodes:
+			print node.getF()
+		return lowestF

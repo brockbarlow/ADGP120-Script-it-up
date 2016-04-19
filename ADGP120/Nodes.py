@@ -19,7 +19,7 @@ class Node(object):
 	def draw(self, screen, color):
 		margin = self.margin
 		color = (0,0,255) if (self.walkable) else (255,0,0)
-		gfx.draw.rect(screen, color, [(self.left, self.top), (self.width, self.height)])
+		gfx.draw.rect(screen, color, (self.left, self.top, self.width, self.height))
 	
 	def getFCost(self):
 		return self.gCost + self.hCost
