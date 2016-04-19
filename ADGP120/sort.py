@@ -20,6 +20,7 @@ class TestArray(object):
 			if (i.f < lowestF):
 				lowestF = i.f
 				lowestInArray = i
+		
 		return lowestInArray
 		
 '''
