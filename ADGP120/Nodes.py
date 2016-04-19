@@ -1,7 +1,7 @@
 import pygame
 from pygame.locals import *
 
-class Nodes(object):
+class Node:
 	def __init__(self, x, y):
 		self.f = None #movement cost plus estimated cost
 		self.g = None #movement cost, None = NULL
