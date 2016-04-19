@@ -5,8 +5,8 @@ from pygame.locals import *
 
 class AStar(object):
 	def __init__(self, searchSpace, start, goal):
-		self.open[]
-		self.close[]
+		self.open([])
+		self.close([])
 		self.startNode = start
 		self.goalNode = goal
 		self.searchNodes = searchSpace
@@ -26,7 +26,7 @@ class AStar(object):
 		lowestF = -1
 		nodeWithLowestF = None
 		for node in nodes:
-			if (node.f < lowestF):
+			if (node.f > lowestF):
 				lowestF = node.f
 				nodeWithLowestF = node
 		return nodeWithLowestF

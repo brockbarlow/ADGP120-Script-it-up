@@ -6,9 +6,11 @@ class Node(object):
 		self.f = None #movement cost plus estimated cost
 		self.g = None #movement cost, None = NULL
 		self.h = None #estimated cost, None = NULL
-		self.width = None
-		self.height = None
-		self.margin = None
+		self.width = 20
+		self.height = 20
+		self.margin = 5
+		#self.x = x
+		#self.y = y
 		self.left = (self.margin + self.width) * x + self.margin
 		self.top = (self.margin + self.height) * y + self.margin
 		self.position = (x, self.height - y)
@@ -32,12 +34,3 @@ class Node(object):
 		
 	def setH(self, value):
 		self.h = value
-		
-	def setWidth(self):
-		self.width = 20
-		
-	def setHeight(self):
-		self.height = 20
-		
-	def setMargin(self):
-		self.margin = 5
