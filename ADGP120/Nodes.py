@@ -24,10 +24,10 @@ class Node(object):
 	def getFCost(self):
 		return self.gCost + self.hCost
 		
-	def getGCost(self, value)
+	def getGCost(self, value):
 		self.gCost = value
 		
-	def getHCost(self, value)
+	def getHCost(self, value):
 		self.hCost = value
 	
 	def setWalk(self, walkable):
