@@ -1,4 +1,4 @@
-import pygame as gfx #instead of using pygame, gfx will be used
+import pygame as gfx #instead of using pygame, gfx will be used (namespace)
 
 class Node(object): #this class is used for nodes
 	def __init__(self, x, y): #init function
@@ -13,7 +13,7 @@ class Node(object): #this class is used for nodes
 		self.left = (self.margin + self.width) * x + self.margin #this is x
 		self.top = (self.margin + self.height) * y + self.margin #this is y
 		self.position = (x, self.height - y)
-		self.parent = None
+		self.parent = None #variable used for the path the node will travel
 	
 	def draw(self, screen, color): #draw function. used to draw the grid
 		margin = self.margin
@@ -31,7 +31,3 @@ class Node(object): #this class is used for nodes
 	
 	def setWalk(self, walkable): #set function. sets the walkable variable
 		self.walkable = walkable
-	
-	#self.adjacent = []
-	#def addAdjacent(self, value):
-		#self.adjacent.append(value)
