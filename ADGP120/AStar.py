@@ -12,7 +12,7 @@ class AStar(object):
 	def draw(self, screen, startColor, goalColor):
 		startColor = (0,255,255)
 		goalColor = (0,255,0)
-		gfx.draw.rect(screen, startColor, (self.startNode.left, self.startNode.top, self.startNode.width, self.startNode.height))
+		gfx.draw.rect(screen, startColor, (self.startNode.x, self.startNode.y, self.startNode.width, self.startNode.height))
 		gfx.draw.rect(screen, goalColor, (self.goalNode.left, self.goalNode.top, self.goalNode.width, self.goalNode.height))
 		
 	def run(self):
