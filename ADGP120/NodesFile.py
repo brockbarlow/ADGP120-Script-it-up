@@ -5,15 +5,15 @@ class Node(object): #this class is used for nodes
 		self.fCost = None #movement + estimated cost. None = NULL
 		self.gCost = None #movement cost. None = NULL
 		self.hCost = None #estimated cost. None = NULL
-		self.parent = None
-		self.walkable = True
-		self.color = (255,255,255)
+		self.walkable = True #determines if blocks can or can't be walked
+		self.color = (255,255,255) #color value
 		self.width = 20 #size of grid
 		self.height = 20 #size of grid
 		self.margin = 5 #distance between each block in grid
 		self.left = (self.margin + self.width) * x + self.margin #this is x
 		self.top = (self.margin + self.height) * y + self.margin #this is y
 		self.position = (x, self.height - y)
+		self.parent = None
 	
 	def draw(self, screen, color): #draw function. used to draw the grid
 		margin = self.margin

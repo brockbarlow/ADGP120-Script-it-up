@@ -1,5 +1,3 @@
-import Nodes
-from Nodes import *
 import AStar
 from AStar import *
 
