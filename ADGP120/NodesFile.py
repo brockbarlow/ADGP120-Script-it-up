@@ -1,33 +1,28 @@
-import pygame as gfx #instead of using pygame, gfx will be used (namespace)
+import pygame
+from pygame import *
 
-class Node(object): #this class is used for nodes
-	def __init__(self, x, y): #init function
-		self.fCost = None #movement + estimated cost. None = NULL
-		self.gCost = None #movement cost. None = NULL
-		self.hCost = None #estimated cost. None = NULL
-		self.walkable = True #determines if blocks can or can't be walked
-		self.color = (255,255,255) #color value
-		self.width = 20 #size of grid
-		self.height = 20 #size of grid
-		self.margin = 5 #distance between each block in grid
-		self.left = (self.margin + self.width) * x + self.margin #this is x
-		self.top = (self.margin + self.height) * y + self.margin #this is y
-		self.position = (x, self.height - y)
-		self.parent = None #variable used for the path the node will travel
-	
-	def draw(self, screen, color): #draw function. used to draw the grid
-		margin = self.margin
-		color = self.color if (self.walkable) else (255,0,0) #good blocks are white, bad blocks are red
-		gfx.draw.rect(screen, color, (self.left, self.top, self.width, self.height))
-	
-	def getFCost(self): #get function. gets the f cost
-		return self.gCost + self.hCost
+class Node(object):
+	def __init__(self, x, y):
+		self.f = None #g + h
+		self.g = None #movement cost
+		self.h = None #guess movement cost
+		self.parent = None
+		self.walkable = True 
+		self.color = (255,255,255)
+		self.x = x
+		self.y = y
+		self.height = 20
+		self.width = 20
 		
-	def setGCost(self, value): #set function. sets the cost of g
-		self.gCost = value
+	def draw(self, screen):
+		c = self.color if (self.walkable) else (255,0,0)
+		pygame.draw.rect(screen, c, (self.x, self.y, self.width, self.height))
 		
-	def setHCost(self, value): #set function. sets the cost of h
-		self.hCost = value
-	
-	def setWalk(self, walkable): #set function. sets the walkable variable
-		self.walkable = walkable
+	def setG(self, value): #set movement cost.
+		self.g = value
+		
+	def setH(self, value): #set guess movement cost.
+		self.h = value
+		
+	def getF(self): #add g and h, then return that value.
+		return self.g + self.h

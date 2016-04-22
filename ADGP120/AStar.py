@@ -1,5 +1,4 @@
-import NodesFile #AStar implements NodesFile.py
-from NodesFile import *
+import NodesFile
 
 class AStar(object):
 	def __init__(self, searchSpace, start, goal):
