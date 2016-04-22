@@ -6,6 +6,7 @@ class Node(object):
 		self.f = None #g + h
 		self.g = None #movement cost
 		self.h = None #guess movement cost
+		self.center = (self.x + (self.width / 2), self.y + (self.height / 2))
 		self.parent = None
 		self.walkable = True 
 		self.color = (255,255,255)
@@ -13,6 +14,7 @@ class Node(object):
 		self.y = y
 		self.height = 20
 		self.width = 20
+		self.margin = 10
 		
 	def draw(self, screen):
 		c = self.color if (self.walkable) else (255,0,0)
