@@ -9,15 +9,15 @@ class AStar(object):
 		self.current = start
 		self.goal = goal
 		self.searchSpace = searchSpace
-		self.currentColor = (255,255,0)
+		self.startColor = (255,255,0)
 		self.goalColor = (0,255,0)
 		self.lowestF = None
 		
-	def draw(self, screen, color):
-		color = self.currentColor if (self.current) else (200,100,175)
-		color = self.goalColor if (self.goal) else (175,100,200)
-		gfx.draw.rect(screen, color, (self.current.left, self.current.top, self.current.width, self.current.height))
-		gfx.draw.rect(screen, color, (self.goal.left, self.goal.top, self.goal.width, self.goal.height))
+	def draw(self, screen):
+		cStart = self.startColor
+		cGoal = self.goalColor
+		pygame.draw.rect(screen, cStart, (self.start.x, self.start.y, self.start.width, self.start.height))
+		pygame.draw.rect(screen, cGoal, (self.goal.x, self.goal.y, self.goal.width, self.goal.height))
 		
 	def run(self): #run function.
 		self.OPENList.append(self.start) #add start to the open list
