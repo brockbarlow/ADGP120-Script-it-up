@@ -1,20 +1,19 @@
 import NodesFile
+from NodesFile import *
 
 class AStar(object):
-	def __init__(self, searchSpace, start, goal):
-		self.OPENList([])
-		self.CLOSEList([])
-		self.ADJACENTList([])
+	def __init__(self, start, goal, searchSpace):
+		self.OPENList = []
+		self.CLOSEList = []
 		self.start = start
 		self.current = start
-		self.currentColor = (0,255,255)
 		self.goal = goal
-		self.goalColor = (0,255,0)
 		self.searchSpace = searchSpace
+		self.currentColor = (255,255,0)
+		self.goalColor = (0,255,0)
 		self.lowestF = None
 		
 	def draw(self, screen, color):
-		margin = self.margin
 		color = self.currentColor if (self.current) else (200,100,175)
 		color = self.goalColor if (self.goal) else (175,100,200)
 		gfx.draw.rect(screen, color, (self.current.left, self.current.top, self.current.width, self.current.height))
