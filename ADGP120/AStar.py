@@ -25,12 +25,18 @@ class AStar(object):
 		while not self.OPENList:
 			self.current = self.lowestF(self.OPENList)
 		
-	def locateAdjacent(self):
+	def locateAdjacent(self, screen):
 		ADJACENTList = self.ADJACENTList
-		for a,nodes in enumerate(self.searchSpace):
+		for a,nodes in enumerate(self.searchSpace): #get current
 			for b,node in enumerate(nodes):
 				if node == self.current:
 					position = (b, a)
+		for a,nodes in enumerate(self.searchSpace): #get adjacents
+			if (position[1] - 1 <= a <= position[1] + 1) and (a != None):
+				for b,node in enumerate(nodes):
+					if (position[0] - 1 <= b <= position[0] + 1) and (b != None) and (self.searchSpace[a][b].walkable == True) and (self.searchSpace[a][b] != self.current):
+						ADJACENTList.append(self.searchSpace[a][b])
+		return ADJACENTList
 		
 	def lowestFCost(self, nodes): #lowest f cost function. used to fine lowest f
 		lowestF = self.lowestF
