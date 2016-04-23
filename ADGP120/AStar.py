@@ -19,11 +19,15 @@ class AStar(object):
 		
 	def draw(self, screen):
 		margin = self.margin
+		node = self.goal
 		cStart = self.startColor
 		cGoal = self.goalColor
 		cPath = self.pathColor
 		pygame.draw.rect(screen, cStart, (self.start.x, self.start.y, self.start.width, self.start.height))
 		pygame.draw.rect(screen, cGoal, (self.goal.x, self.goal.y, self.goal.width, self.goal.height))
+		while (node.parent != None):
+			pygame.draw.line(screen, cPath, node.center, node.parent.center, 5)
+			node = node.parent
 		
 	def run(self): #run function.
 		self.OPENList.append(self.start) #add start to the open list
