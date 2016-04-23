@@ -53,3 +53,12 @@ class AStar(object):
 			if (lowestF == None) or (n.f < lowestF.f):
 				lowestF = n
 		return lowestF
+		
+	def getHCost(self, node1, node2):
+		hCost = self.hCost
+		for a,nodes in enumerate(self.searchSpace): #get current
+			for b,node in enumerate(nodes):
+				if (self.searchSpace[a][b] == node1):
+					position1 = [a,b]
+				if (self.searchSpace[a][b] == node2):
+					position2 = [a,b]
