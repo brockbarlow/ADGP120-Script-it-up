@@ -9,7 +9,7 @@ class Node(object):
 		self.center = (self.x + (self.width / 2), self.y + (self.height / 2))
 		self.left = (self.margin + self.width) * x + self.margin
 		self.top = (self.margin + self.height) * y + self.margin
-		self.position = (x, self.height - y)
+		self.pos = (x, self.height - y)
 		self.parent = None
 		self.walkable = True 
 		self.color = (255,255,255)
