@@ -5,6 +5,7 @@ class AStar(object):
 	def __init__(self, start, goal, searchSpace):
 		self.OPENList = []
 		self.CLOSEList = []
+		self.ADJACENTList = []
 		self.start = start
 		self.current = start
 		self.goal = goal
@@ -31,17 +32,9 @@ class AStar(object):
 				if node == self.current:
 					position = (b, a)
 		
-		
-	def lowestFCost(self, Nodes): #lowest f cost function. used to fine lowest f
+	def lowestFCost(self, nodes): #lowest f cost function. used to fine lowest f
 		lowestF = self.lowestF
-		for n in Nodes: #for setting lowestF. if its none of greater than n, it becomes n
-			if (lowestF == None or n.getF() < lowestF.getF()):
+		for n in nodes: #for setting lowestF. if its none or greater than n, it becomes n
+			if (lowestF == None or n.f < lowestF.f):
 				lowestF = n
-		for a,nodes in enumerate(self.searchSpace): #for finding the current node
-			for b,node in enumerate(nodes): #if node equals lowestF, the position will change
-				if node == lowestF:
-					position = (b, a)
-		self.OPENList.sort() #sort the open list
 		return lowestF
-		
-	#enumerate() is one of the built-in Python functions. It returns an enumerate object.
