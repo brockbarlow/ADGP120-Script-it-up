@@ -63,3 +63,12 @@ class AStar(object):
 					position1 = [a,b]
 				if (self.searchSpace[a][b] == node2):
 					position2 = [a,b]
+		distance = [abs(position1[0] - position2[0]), abs(position1[1] - position2[1])]
+		while (distance != [0,0]):
+			if (distance[0] > 0):
+				hCost += 10
+				distance[0] -= 1
+			if (distance[1] > 0):
+				hCost += 10
+				distance[1] -= 1
+		return hCost
