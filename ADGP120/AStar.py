@@ -34,9 +34,19 @@ class AStar(object):
 		self.current = self.start
 		self.current.g = 0
 		self.current.h = 0
-		self.OPENList.append(self.start) 
-		while not self.OPENList:
-			self.current = self.lowestF(self.OPENList)
+		self.current.g = self.getGCost(self.current, self.goal)
+		self.current.h = self.getHCost(self.current, self.goal)
+		self.OPENList.append(self.current) 
+		while self.current in self.OPENList:
+			adjacent = self.locateAdjacent(screen)
+			for a in adjacent:
+				if (a.walkable == True):
+					a.parent = self.current
+					a.g = self.getGCost(a, self.current)
+					a.h = self.getHCost(a, self.goal)
+					self.OPENList.append(a)
+			self.OPENList.remove(self.current)
+			self.CLOSEList.append(self.current)
 		
 	def locateAdjacent(self, screen):
 		ADJACENTList = self.ADJACENTList
