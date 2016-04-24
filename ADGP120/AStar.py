@@ -30,8 +30,11 @@ class AStar(object):
 			pygame.draw.line(screen, cPath, node.center, node.parent.center, 5)
 			node = node.parent
 		
-	def run(self): #run function.
-		self.OPENList.append(self.start) #add start to the open list
+	def setup(self, screen): 
+		self.current = self.start
+		self.current.g = 0
+		self.current.h = 0
+		self.OPENList.append(self.start) 
 		while not self.OPENList:
 			self.current = self.lowestF(self.OPENList)
 		
@@ -72,3 +75,18 @@ class AStar(object):
 				hCost += 10
 				distance[1] -= 1
 		return hCost
+		
+	def getGCost(self, node1, node2):
+		gCost = self.gCost
+		for a,nodes in enumerate(self.searchSpace): #get current
+			for b,node in enumerate(nodes):
+				if (self.searchSpace[a][b] == node1):
+					position1 = [a,b]
+				if (self.searchSpace[a][b] == node2):
+					position2 = [a,b]
+		distance = [abs(position1[0] - position2[0]), abs(position1[1] - position2[1])]
+		if (distance[0] > 0) and (distance[1] > 0):
+			gCost = 14
+		else:
+			gCost = 10
+		return gCost
