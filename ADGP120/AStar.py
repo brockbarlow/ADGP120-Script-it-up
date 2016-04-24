@@ -1,4 +1,5 @@
-import NodesFile
+import pygame, NodesFile
+from pygame import *
 from NodesFile import *
 
 class AStar(object):
