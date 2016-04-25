@@ -15,8 +15,6 @@ class Node(object):
 		self.width = 20
 		self.margin = 5
 		self.center = (self.x + (self.width / 2), self.y + (self.height / 2))
-		self.left = (self.margin + self.width) * x + self.margin
-		self.top = (self.margin + self.height) * y + self.margin
 		self.pos = (x, self.height - y)
 		
 	def draw(self, screen):
