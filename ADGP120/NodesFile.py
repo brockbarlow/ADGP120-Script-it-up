@@ -22,9 +22,14 @@ class Node(object):
 		
 	def setG(self, value): #set movement cost.
 		self.g = value
+		return self.g
 		
 	def setH(self, value): #set guess movement cost.
 		self.h = value
+		return self.h
 		
 	def getF(self): #add g and h, then return that value.
+		if (self.g == None) and (self.h == None):
+			self.g = 0
+			self.h = 0
 		return self.g + self.h
