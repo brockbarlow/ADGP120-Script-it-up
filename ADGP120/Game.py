@@ -30,24 +30,13 @@ def main():
 	program.draw(screen)
 	program.run(screen)
 	
-	#for x in range(10):
-		#for y in range(10):
-			#n = Node(x,y)
-			#unwalkable = True if (x >= 5 and x <= 6 and y >= 5 and y <= 8) else False
-			#print("x =:{mx} y=: {my} | pos =: {position}".format(mx = x, my = y, position = n.position))
-			#n.setWalk(unwalkable)
-			#searchSpace.append(n)
-	
 	finished = False
 	clock = pygame.time.Clock()
 	while not finished:
 		for event in pygame.event.get():
 			if event.type == pygame.QUIT:
 				finished = True	
-		#screen.fill(0,0,0)
 		clock.tick(60)
-		#for i in searchSpace:
-			#i.draw(screen)
 		pygame.display.flip()
 	pygame.quit()
 	
