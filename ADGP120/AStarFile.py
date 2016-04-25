@@ -1,25 +1,25 @@
-import pygame, NodesFile
-from pygame import *
-from NodesFile import *
+import pygame, NodesFile #using pygame and NodesFile
+from pygame import * #import everything
+from NodesFile import * #import everything
 
-class AStar(object):
-	def __init__(self, start, searchSpace, goal):
+class AStar(object): #astar class
+	def __init__(self, start, searchSpace, goal): #init function
 		self.OPENList = [] #holds possible paths
 		self.CLOSEList = [] #when calculations are done, add to this list
 		self.ADJACENTList = [] #nodes that surround the current node
-		self.start = start
-		self.current = start
-		self.goal = goal
-		self.searchSpace = searchSpace
-		self.startColor = (255,255,0)
-		self.goalColor = (0,255,0)
-		self.pathColor = (255,0,255)
-		self.adjacentColor = (0,255,255)
-		self.lowestF = None
-		self.hCost = 0
-		self.gCost = None
+		self.start = start #start node
+		self.current = start #starts as start node
+		self.goal = goal #end node
+		self.searchSpace = searchSpace #search range
+		self.startColor = (255,255,0) #yellow color value
+		self.goalColor = (0,255,0) #green color value
+		self.pathColor = (255,0,255) #purple color value
+		self.adjacentColor = (0,255,255) #teal color value
+		self.lowestF = None #defines the lowest f
+		self.hCost = 0 #what the h cost is
+		self.gCost = None #what the g cost is
 		
-	def draw(self, screen):
+	def draw(self, screen): #draws start and goal nodes
 		cStart = self.startColor
 		cGoal = self.goalColor
 		pygame.draw.rect(screen, cStart, (self.start.x, self.start.y, self.start.width, self.start.height))

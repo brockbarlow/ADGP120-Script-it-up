@@ -16,8 +16,6 @@ def main():
 	n = Node(-10, -10)
 	
 	for a in range(0, 10):
-		#randStart = randrange(0, 10)
-		#randGoal = randrange(0, 10)
 		temp = []
 		for b in range(0, 10):
 			temp.append(Node(b * (n.width + n.margin), trackNode))
