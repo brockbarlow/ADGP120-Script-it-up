@@ -11,8 +11,6 @@ class AStar(object):
 		self.current = start
 		self.goal = goal
 		self.searchSpace = searchSpace
-		#self.x = x
-		#self.y = y
 		self.startColor = (255,255,0)
 		self.goalColor = (0,255,0)
 		self.pathColor = (0,0,0)
@@ -21,7 +19,6 @@ class AStar(object):
 		self.gCost = None
 		
 	def draw(self, screen):
-		#margin = self.margin
 		node = self.goal
 		cStart = self.startColor
 		cGoal = self.goalColor
