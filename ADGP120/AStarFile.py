@@ -4,9 +4,9 @@ from NodesFile import *
 
 class AStar(object):
 	def __init__(self, start, searchSpace, goal):
-		self.OPENList = []
-		self.CLOSEList = []
-		self.ADJACENTList = []
+		self.OPENList = [] #holds possible paths
+		self.CLOSEList = [] #when calculations are done, add to this list
+		self.ADJACENTList = [] #nodes that surround the current node
 		self.start = start
 		self.current = start
 		self.goal = goal
