@@ -17,7 +17,7 @@ class Node(object):
 		self.center = (self.x + (self.width / 2), self.y + (self.height / 2))
 		self.pos = (x, self.height - y)
 		
-	def draw(self, screen):
+	def draw(self, screen): #this will draw the grid
 		margin = self.margin
 		c = self.color if (self.walkable) else (255,0,0)
 		pygame.draw.rect(screen, c, (self.x, self.y, self.width, self.height))
