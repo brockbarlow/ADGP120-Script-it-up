@@ -15,7 +15,7 @@ class AStar(object): #astar class
 		self.goalColor = (0,255,0) #green color value
 		self.pathColor = (255,0,255) #purple color value
 		self.adjacentColor = (0,255,255) #teal color value
-		self.lowestF = None #defines the lowest f
+		self.lowestF = None #what the lowest f is
 		self.hCost = 0 #what the h cost is
 		self.gCost = None #what the g cost is
 		
@@ -68,13 +68,13 @@ class AStar(object): #astar class
 							self.OPENList.sort(key = lambda x : x.f)
 		return False
 		
-	def locateAdjacent(self, screen):
+	def locateAdjacent(self, screen): #function that finds current node adjacents
 		ADJACENTList = self.ADJACENTList
-		for a,nodes in enumerate(self.searchSpace): #get current
+		for a,nodes in enumerate(self.searchSpace): #get current node
 			for b,node in enumerate(nodes):
 				if node == self.current:
 					position = (b, a)
-		for a,nodes in enumerate(self.searchSpace): #get adjacents
+		for a,nodes in enumerate(self.searchSpace): #get adjacent nodes
 			if (position[1] - 1 <= a <= position[1] + 1) and (a != None):
 				for b,node in enumerate(nodes):
 					if (position[0] - 1 <= b <= position[0] + 1) and (b != None) and (self.searchSpace[a][b].walkable == True) and (self.searchSpace[a][b] != self.current):
@@ -88,40 +88,40 @@ class AStar(object): #astar class
 				lowestF = n
 		return lowestF
 		
-	def getHCost(self, node1, node2):
+	def getHCost(self, node1, node2): #calculates h
 		hCost = self.hCost
-		for a,nodes in enumerate(self.searchSpace): #get current
+		for a,nodes in enumerate(self.searchSpace): #these for loops get the current node
 			for b,node in enumerate(nodes):
-				if (self.searchSpace[a][b] == node1):
-					position1 = [a,b]
-				if (self.searchSpace[a][b] == node2):
-					position2 = [a,b]
-		distance = [abs(position1[0] - position2[0]), abs(position1[1] - position2[1])]
-		while (distance != [0,0]):
-			if (distance[0] > 0):
+				if (self.searchSpace[a][b] == node1): #rows
+					row = [a,b]
+				if (self.searchSpace[a][b] == node2): #columns
+					column = [a,b]
+		distance = [abs(row[0] - column[0]), abs(row[1] - column[1])]
+		while (distance != [0,0]): #while first and second values do not = 0...
+			if (distance[0] > 0): #if first value is greater than 0...
 				hCost += 10
 				distance[0] -= 1
-			if (distance[1] > 0):
+			if (distance[1] > 0): #if second value is greater than 0...
 				hCost += 10
 				distance[1] -= 1
 		return hCost
 		
-	def getGCost(self, node1, node2):
+	def getGCost(self, node1, node2): #calculates g
 		gCost = self.gCost
-		for a,nodes in enumerate(self.searchSpace): #get current
+		for a,nodes in enumerate(self.searchSpace): #these for loops get the current node
 			for b,node in enumerate(nodes):
-				if (self.searchSpace[a][b] == node1):
-					position1 = [a,b]
-				if (self.searchSpace[a][b] == node2):
-					position2 = [a,b]
-		distance = [abs(position1[0] - position2[0]), abs(position1[1] - position2[1])]
-		if (distance[0] > 0) and (distance[1] > 0):
+				if (self.searchSpace[a][b] == node1): #rows
+					row = [a,b]
+				if (self.searchSpace[a][b] == node2): #columns
+					column = [a,b]
+		distance = [abs(row[0] - column[0]), abs(row[1] - column[1])]
+		if (distance[0] > 0) and (distance[1] > 0): #if first value and second value both are greater than 0...
 			gCost = 14
 		else:
 			gCost = 10
 		return gCost
 		
-	def drawPath(self, screen):
+	def drawPath(self, screen): #draws the path from goal to start
 		node = self.goal
 		cPath = self.pathColor
 		while (node.parent != None):
