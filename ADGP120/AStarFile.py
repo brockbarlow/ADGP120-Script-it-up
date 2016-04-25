@@ -13,7 +13,7 @@ class AStar(object):
 		self.searchSpace = searchSpace
 		self.startColor = (255,255,0)
 		self.goalColor = (0,255,0)
-		self.pathColor = (0,0,0)
+		self.pathColor = (255,0,255)
 		self.lowestF = None
 		self.hCost = 0
 		self.gCost = None
