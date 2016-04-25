@@ -28,7 +28,7 @@ def main():
 	for a in searchSpace:
 		for b in a:
 			randGrid = randrange(0, 10)
-			if (randGrid % 3 == 0) and (program.goal != b):
+			if (randGrid % 3 == 0) and (program.goal != b) and (program.start != b):
 				b.walkable = False
 			b.draw(screen)
 			
