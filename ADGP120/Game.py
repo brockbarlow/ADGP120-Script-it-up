@@ -21,7 +21,7 @@ def main():
 			temp.append(Node(b * (n.width + n.margin), trackNode))
 		searchSpace.append(temp)
 		trackNode += temp[0].height + temp[0].margin
-	program = run(searchSpace[1][1], searchSpace, searchSpace[5][5])
+	program = AStar(searchSpace[1][1], searchSpace, searchSpace[5][5])
 	
 	for a in searchSpace:
 		for b in a:
