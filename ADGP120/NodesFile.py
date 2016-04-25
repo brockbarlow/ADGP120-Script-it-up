@@ -15,7 +15,6 @@ class Node(object):
 		self.width = 20
 		self.margin = 5
 		self.center = (self.x + (self.width / 2), self.y + (self.height / 2))
-		self.pos = (x, self.height - y)
 		
 	def draw(self, screen): #this will draw the grid
 		margin = self.margin
