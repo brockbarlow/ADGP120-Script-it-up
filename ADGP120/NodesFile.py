@@ -17,8 +17,7 @@ class Node(object):
 		self.center = (self.x + (self.width / 2), self.y + (self.height / 2))
 		
 	def draw(self, screen): #this will draw the grid
-		margin = self.margin
-		c = self.color if (self.walkable) else (255,0,0)
+		c = self.color if (self.walkable) else (255,0,0) #walkable = white, unwalkable = red
 		pygame.draw.rect(screen, c, (self.x, self.y, self.width, self.height))
 		
 	def setG(self, value): #set movement cost.
