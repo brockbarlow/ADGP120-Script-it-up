@@ -17,7 +17,7 @@ class AStar(object):
 		self.goalColor = (0,255,0)
 		self.pathColor = (0,0,0)
 		self.lowestF = None
-		self.hCost = None
+		self.hCost = 0
 		self.gCost = None
 		
 	def draw(self, screen):

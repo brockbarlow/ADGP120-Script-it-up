@@ -44,7 +44,7 @@ def main():
 		for event in pygame.event.get():
 			if event.type == pygame.QUIT:
 				finished = True	
-		screen.fill(0,0,0)
+		#screen.fill(0,0,0)
 		clock.tick(60)
 		#for i in searchSpace:
 			#i.draw(screen)
