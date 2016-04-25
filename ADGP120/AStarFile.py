@@ -3,7 +3,7 @@ from pygame import *
 from NodesFile import *
 
 class AStar(object):
-	def __init__(self, start, goal, searchSpace):
+	def __init__(self, start, searchSpace, goal):
 		self.OPENList = []
 		self.CLOSEList = []
 		self.ADJACENTList = []
