@@ -7,7 +7,7 @@ from time import *
 
 def main():
 	pygame.init()
-	window = [250,250]
+	window = [247,247]
 	screen = pygame.display.set_mode(window)
 	pygame.display.set_caption("ADGP120")
 	searchSpace = []
