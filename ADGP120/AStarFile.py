@@ -11,6 +11,8 @@ class AStar(object):
 		self.current = start
 		self.goal = goal
 		self.searchSpace = searchSpace
+		#self.x = x
+		#self.y = y
 		self.startColor = (255,255,0)
 		self.goalColor = (0,255,0)
 		self.pathColor = (0,0,0)
@@ -19,7 +21,7 @@ class AStar(object):
 		self.gCost = None
 		
 	def draw(self, screen):
-		margin = self.margin
+		#margin = self.margin
 		node = self.goal
 		cStart = self.startColor
 		cGoal = self.goalColor
@@ -30,7 +32,7 @@ class AStar(object):
 			pygame.draw.line(screen, cPath, node.center, node.parent.center, 5)
 			node = node.parent
 		
-	def setup(self, screen): 
+	def startSetup(self, screen): 
 		self.current = self.start
 		self.current.g = 0
 		self.current.h = 0
@@ -47,6 +49,31 @@ class AStar(object):
 					self.OPENList.append(a)
 			self.OPENList.remove(self.current)
 			self.CLOSEList.append(self.current)
+			
+	def run(self, screen):
+		self.startSetup(screen)
+		while (len(self.OPENList) > 0):
+			self.current = self.lowestFCost(self.OPENList)
+			self.OPENList.remove(self.current)
+			self.CLOSEList.append(self.current)
+			adjacentNode = self.locateAdjacent(screen)
+			for a in adjacentNode:
+				if (a not in self.CLOSEList):
+					if (a not in self.OPENList):
+						if (self.current == self.goal):
+							return True
+						else:
+							self.OPENList.append(a)
+							a.parent = self.current
+							a.g = self.getGCost(a, self.current)
+							a.h = self.getHCost(a, self.goal)
+					else:
+						travelCost = self.current.g + self.current.parent.g
+						if (travelCost < a.g):
+							a.parent = self.current
+							a.g = travelCost
+							self.OPENList.sort(key = lambda x : x.f)
+		return False
 		
 	def locateAdjacent(self, screen):
 		ADJACENTList = self.ADJACENTList

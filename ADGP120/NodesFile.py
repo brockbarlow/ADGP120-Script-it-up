@@ -3,21 +3,21 @@ from pygame import *
 
 class Node(object):
 	def __init__(self, x, y):
+		self.x = x
+		self.y = y
 		self.f = None #g + h
 		self.g = None #movement cost
 		self.h = None #guess movement cost
+		self.parent = None
+		self.walkable = True 
+		self.color = (255,255,255)
+		self.height = 20
+		self.width = 20
+		self.margin = 5
 		self.center = (self.x + (self.width / 2), self.y + (self.height / 2))
 		self.left = (self.margin + self.width) * x + self.margin
 		self.top = (self.margin + self.height) * y + self.margin
 		self.pos = (x, self.height - y)
-		self.parent = None
-		self.walkable = True 
-		self.color = (255,255,255)
-		self.x = x
-		self.y = y
-		self.height = 20
-		self.width = 20
-		self.margin = 5
 		
 	def draw(self, screen):
 		margin = self.margin
