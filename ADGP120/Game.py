@@ -9,7 +9,7 @@ def main():
 	pygame.init()
 	window = [247,247]
 	screen = pygame.display.set_mode(window)
-	pygame.display.set_caption("ADGP120")
+	pygame.display.set_caption("AStar")
 	searchSpace = []
 	temp = []
 	trackNode = 0
@@ -31,13 +31,10 @@ def main():
 			if (randGrid % 3 == 0) and (program.goal != b):
 				b.walkable = False
 			b.draw(screen)
-	
-	for a in searchSpace:
-		for b in a:
-			b.draw(screen)
 			
 	program.draw(screen)
 	program.run(screen)
+	program.drawPath(screen)
 	
 	finished = False
 	clock = pygame.time.Clock()

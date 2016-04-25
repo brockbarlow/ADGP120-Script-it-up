@@ -14,20 +14,16 @@ class AStar(object):
 		self.startColor = (255,255,0)
 		self.goalColor = (0,255,0)
 		self.pathColor = (255,0,255)
+		self.adjacentColor = (0,255,255)
 		self.lowestF = None
 		self.hCost = 0
 		self.gCost = None
 		
 	def draw(self, screen):
-		node = self.goal
 		cStart = self.startColor
 		cGoal = self.goalColor
-		cPath = self.pathColor
 		pygame.draw.rect(screen, cStart, (self.start.x, self.start.y, self.start.width, self.start.height))
 		pygame.draw.rect(screen, cGoal, (self.goal.x, self.goal.y, self.goal.width, self.goal.height))
-		while (node.parent != None):
-			pygame.draw.line(screen, cPath, node.center, node.parent.center, 5)
-			node = node.parent
 		
 	def startSetup(self, screen): 
 		self.current = self.start
@@ -124,3 +120,10 @@ class AStar(object):
 		else:
 			gCost = 10
 		return gCost
+		
+	def drawPath(self, screen):
+		node = self.goal
+		cPath = self.pathColor
+		while (node.parent != None):
+			pygame.draw.line(screen, cPath, node.center, node.parent.center, 5)
+			node = node.parent
