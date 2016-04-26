@@ -13,7 +13,7 @@ def main():
 	searchSpace = []
 	temp = []
 	trackNode = 0
-	n = Node(-10, -10)
+	n = Node(0, 0)
 	
 	for a in range(0, 19):
 		randStart = randrange(0, 19)
@@ -24,7 +24,7 @@ def main():
 		searchSpace.append(temp)
 		trackNode += temp[0].height + temp[0].margin
 	program = AStar(searchSpace[randStart][randStart], searchSpace, searchSpace[randGoal][randGoal])
-	                               #y         #x                                   #y        #x
+	                             
 	for a in searchSpace:
 		for b in a:
 			randGrid = randrange(0, 5)
@@ -33,7 +33,7 @@ def main():
 			b.draw(screen)
 			
 	program.draw(screen)
-	program.run()#screen)
+	program.run()
 	program.drawPath(screen)
 	program.drawCircle(screen)
 	

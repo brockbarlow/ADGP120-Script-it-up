@@ -25,22 +25,22 @@ class AStar(object): #astar class
 		pygame.draw.rect(screen, cStart, (self.start.x, self.start.y, self.start.width, self.start.height))
 		pygame.draw.rect(screen, cGoal, (self.goal.x, self.goal.y, self.goal.width, self.goal.height))
 		
-	def startSetup(self):
-		self.current = self.start
-		self.OPENList.append(self.current) 
-		adjacent = self.locateAdjacent()
+	def startSetup(self): #setup function
+		self.current = self.start #current is start
+		self.OPENList.append(self.current) #add current to open list
+		adjacent = self.locateAdjacent() #call locateAdjacent function
 		for a in adjacent:
-			if (a.walkable == True):
+			if (a.walkable == True): #if true...do this
 				a.parent = self.current
 				a.g = self.getGCost(a, self.current)
 				a.h = self.getHCost(a, self.goal)
 				self.OPENList.append(a)
-		self.OPENList.remove(self.current)
-		self.CLOSEList.append(self.current)
+		self.OPENList.remove(self.current) #remove current from open
+		self.CLOSEList.append(self.current) #add current to closed
 			
-	def run(self):
-		self.startSetup()
-		while (len(self.OPENList) > 0):
+	def run(self): #run function
+		self.startSetup() #call this function
+		while (len(self.OPENList)): 
 			self.current = self.lowestFCost(self.OPENList)
 			self.OPENList.remove(self.current)
 			self.CLOSEList.append(self.current)
@@ -55,13 +55,6 @@ class AStar(object): #astar class
 							a.g = self.getGCost(a, self.current)
 							a.h = self.getHCost(a, self.goal)
 							self.OPENList.append(a)
-					else:
-						travelCost = self.current.g + self.getGCost(self.current, a)
-						if (travelCost < a.g):
-							a.parent = self.current
-							a.setG(self.getGCost(self.current, a))
-							a.setH(self.getHCost(self.goal, a))
-							self.OPENList.sort(key = lambda x : x.f)
 		return False
 		
 	def locateAdjacent(self): #function that finds current node adjacents
@@ -69,11 +62,11 @@ class AStar(object): #astar class
 		for a,nodes in enumerate(self.searchSpace): #get current node
 			for b,node in enumerate(nodes):
 				if node == self.current:
-					position = (b, a)
+					position = (a, b)
 		for a,nodes in enumerate(self.searchSpace): #get adjacent nodes
-			if (position[1] - 1 <= a <= position[1] + 1): 
+			if (position[0] - 1 <= a <= position[0] + 1):
 				for b,node in enumerate(nodes):
-					if (position[0] - 1 <= b <= position[0] + 1) and (self.searchSpace[a][b].walkable == True) and (self.searchSpace[a][b] != self.current):
+					if (position[1] - 1 <= b <= position[1] + 1) and (self.searchSpace[a][b].walkable == True) and (self.searchSpace[a][b] != self.current):
 						ADJACENTList.append(self.searchSpace[a][b])
 		return ADJACENTList
 		
@@ -84,26 +77,26 @@ class AStar(object): #astar class
 				lowestF = n
 		return lowestF
 		
-	def getHCost(self, node1, node2): #calculates h
+	def getHCost(self, pos1, pos2): #calculates h
 		hCost = self.hCost
 		for a,nodes in enumerate(self.searchSpace): #these for loops get the current node
 			for b,node in enumerate(nodes):
-				if (self.searchSpace[a][b] == node1): #rows
+				if (self.searchSpace[a][b] == pos1): #rows
 					row = [a,b]
-				if (self.searchSpace[a][b] == node2): #columns
+				if (self.searchSpace[a][b] == pos2): #columns
 					column = [a,b]
 		distanceA = abs(row[0] - column[0]) #obtain absolute value
 		distanceB = abs(row[1] - column[1]) #obtain absolute value
 		hCost = (distanceA * 10) + (distanceB * 10) #multiply both distances by ten and add them
 		return hCost #return cost
 		
-	def getGCost(self, node1, node2): #calculates g
+	def getGCost(self, pos1, pos2): #calculates g
 		gCost = self.gCost
 		for a,nodes in enumerate(self.searchSpace): #these for loops get the current node
 			for b,node in enumerate(nodes):
-				if (self.searchSpace[a][b] == node1): #rows
+				if (self.searchSpace[a][b] == pos1): #rows
 					row = [a,b]
-				if (self.searchSpace[a][b] == node2): #columns
+				if (self.searchSpace[a][b] == pos2): #columns
 					column = [a,b]
 		distanceA = abs(row[0] - column[0]) #obtain absolute value
 		distanceB = abs(row[1] - column[1]) #obtain absolute value
