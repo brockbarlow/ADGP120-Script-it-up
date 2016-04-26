@@ -7,7 +7,7 @@ from time import *
 
 def main():
 	pygame.init()
-	window = [247,247]
+	window = [622,472]
 	screen = pygame.display.set_mode(window)
 	pygame.display.set_caption("AStar")
 	searchSpace = []
@@ -15,17 +15,17 @@ def main():
 	trackNode = 0
 	n = Node(-10, -10)
 	
-	for a in range(0, 10):
+	for a in range(0, 19):
 		temp = []
-		for b in range(0, 10):
+		for b in range(0, 25):
 			temp.append(Node(b * (n.width + n.margin), trackNode))
 		searchSpace.append(temp)
 		trackNode += temp[0].height + temp[0].margin
-	program = AStar(searchSpace[2][2], searchSpace, searchSpace[7][7])
+	program = AStar(searchSpace[2][2], searchSpace, searchSpace[16][22])
 	
 	for a in searchSpace:
 		for b in a:
-			randGrid = randrange(0, 10)
+			randGrid = randrange(0, 5)
 			if (randGrid % 3 == 0) and (program.goal != b) and (program.start != b):
 				b.walkable = False
 			b.draw(screen)
