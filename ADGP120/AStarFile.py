@@ -101,19 +101,7 @@ class AStar(object): #astar class
 		#distance = [abs(row[0] - column[0]), abs(row[1] - column[1])]
 		distanceA = abs(row[0] - column[0])
 		distanceB = abs(row[1] - column[1])
-		if (distanceA < 0):
-			distanceA = -distanceA
-		if (distanceB < 0):
-			distanceB = -distanceB
 		hCost = (distanceA * 10) + (distanceB * 10)
-		#while (distance != [0,0]): #while first and second values do not = 0...
-			
-			#if (distance[0] > 0): #if first value is greater than 0...
-				#hCost += 10 #add 10 to h cost
-				#distance[0] -= 1
-			#if (distance[1] > 0): #if second value is greater than 0...
-				#hCost += 10 #add 10 to h cost
-				#distance[1] -= 1
 		return hCost #return cost
 		
 	def getGCost(self, node1, node2): #calculates g
@@ -124,17 +112,12 @@ class AStar(object): #astar class
 					row = [a,b]
 				if (self.searchSpace[a][b] == node2): #columns
 					column = [a,b]
-		#distance = [abs(row[0] - column[0]), abs(row[1] - column[1])]
-		distanceA = abs(row[0] - column[0])
-		distanceB = abs(row[1] - column[1])
-		A = distanceA * distanceA
-		B = distanceB * distanceB
-		C = A + B
-		gCost = (sqrt(C) * 10)
-		#if (distance[0] > 0) and (distance[1] > 0): #if first value and second value both are greater than 0...
-			#gCost = 14 #upper left and right, lower left and right cost
-		#else:
-			#gCost = 10 #up, down, left, right cost
+		distanceA = abs(row[0] - column[0]) #obtain absolute value
+		distanceB = abs(row[1] - column[1]) #obtain absolute value
+		A = distanceA * distanceA #multiply disA with disA
+		B = distanceB * distanceB #multiply disB with disB
+		C = A + B #add A and B
+		gCost = (sqrt(C) * 10) #square root C and multiply it by ten
 		return gCost #return cost
 		
 	def drawPath(self, screen): #draws the path from goal to start
