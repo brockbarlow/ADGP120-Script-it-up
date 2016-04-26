@@ -25,13 +25,18 @@ def main():
 	
 	for a in searchSpace:
 		for b in a:
+<<<<<<< HEAD
 			randGrid = randrange(0, 5)
 			if (randGrid % 3 == 0) and (program.goal != b) and (program.start != b):
+=======
+			randGrid = randrange(0, 10)
+			if (randGrid % 3 == 0) and (program.goal != b) and (program.current != b):
+>>>>>>> e5335b643779d785b9bc611fb2cd679115871d4c
 				b.walkable = False
 			b.draw(screen)
 			
 	program.draw(screen)
-	program.run(screen)
+	program.run()#screen)
 	program.drawPath(screen)
 	
 	finished = False
