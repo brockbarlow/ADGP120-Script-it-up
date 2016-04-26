@@ -16,12 +16,14 @@ def main():
 	n = Node(-10, -10)
 	
 	for a in range(0, 19):
+		randStart = randrange(0, 19)
+		randGoal = randrange(0, 19)
 		temp = []
 		for b in range(0, 25):
 			temp.append(Node(b * (n.width + n.margin), trackNode))
 		searchSpace.append(temp)
 		trackNode += temp[0].height + temp[0].margin
-	program = AStar(searchSpace[2][2], searchSpace, searchSpace[16][22])
+	program = AStar(searchSpace[randStart][randStart], searchSpace, searchSpace[randGoal][randGoal])
 	
 	for a in searchSpace:
 		for b in a:
