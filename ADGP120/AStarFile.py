@@ -1,6 +1,7 @@
-import pygame, NodesFile #using pygame and NodesFile
+import pygame, NodesFile, math #using pygame and NodesFile
 from pygame import * #import everything
 from NodesFile import * #import everything
+from math import *
 
 class AStar(object): #astar class
 	def __init__(self, start, searchSpace, goal): #init function
@@ -14,7 +15,7 @@ class AStar(object): #astar class
 		self.startColor = (255,255,0) #yellow color value
 		self.goalColor = (0,255,0) #green color value
 		self.pathColor = (255,0,255) #purple color value
-		#self.adjacentColor = (0,255,255) #teal color value
+		self.nodePathColor = (0,255,255) #teal color value
 		self.lowestF = None #what the lowest f is
 		self.hCost = 0 #what the h cost is
 		self.gCost = 0 #what the g cost is
@@ -97,15 +98,23 @@ class AStar(object): #astar class
 					row = [a,b]
 				if (self.searchSpace[a][b] == node2): #columns
 					column = [a,b]
-		distance = [abs(row[0] - column[0]), abs(row[1] - column[1])]
-		while (distance != [0,0]): #while first and second values do not = 0...
-			if (distance[0] > 0): #if first value is greater than 0...
-				hCost += 10
-				distance[0] -= 1
-			if (distance[1] > 0): #if second value is greater than 0...
-				hCost += 10
-				distance[1] -= 1
-		return hCost
+		#distance = [abs(row[0] - column[0]), abs(row[1] - column[1])]
+		distanceA = abs(row[0] - column[0])
+		distanceB = abs(row[1] - column[1])
+		if (distanceA < 0):
+			distanceA = -distanceA
+		if (distanceB < 0):
+			distanceB = -distanceB
+		hCost = (distanceA * 10) + (distanceB * 10)
+		#while (distance != [0,0]): #while first and second values do not = 0...
+			
+			#if (distance[0] > 0): #if first value is greater than 0...
+				#hCost += 10 #add 10 to h cost
+				#distance[0] -= 1
+			#if (distance[1] > 0): #if second value is greater than 0...
+				#hCost += 10 #add 10 to h cost
+				#distance[1] -= 1
+		return hCost #return cost
 		
 	def getGCost(self, node1, node2): #calculates g
 		gCost = self.gCost
@@ -115,23 +124,29 @@ class AStar(object): #astar class
 					row = [a,b]
 				if (self.searchSpace[a][b] == node2): #columns
 					column = [a,b]
-		distance = [abs(row[0] - column[0]), abs(row[1] - column[1])]
-		if (distance[0] > 0) and (distance[1] > 0): #if first value and second value both are greater than 0...
-			gCost = 14
-		else:
-			gCost = 10
-		return gCost
+		#distance = [abs(row[0] - column[0]), abs(row[1] - column[1])]
+		distanceA = abs(row[0] - column[0])
+		distanceB = abs(row[1] - column[1])
+		A = distanceA * distanceA
+		B = distanceB * distanceB
+		C = A + B
+		gCost = (sqrt(C) * 10)
+		#if (distance[0] > 0) and (distance[1] > 0): #if first value and second value both are greater than 0...
+			#gCost = 14 #upper left and right, lower left and right cost
+		#else:
+			#gCost = 10 #up, down, left, right cost
+		return gCost #return cost
 		
 	def drawPath(self, screen): #draws the path from goal to start
-		node = self.goal
-		cPath = self.pathColor
-		while (node.parent != None):
-			pygame.draw.line(screen, cPath, node.center, node.parent.center, 5)
-			node = node.parent
+		temp = self.goal #temp variable uses goal value
+		cPath = self.pathColor #purple color value
+		while (temp.parent != None): #when parent isn't none...draw line
+			pygame.draw.line(screen, cPath, temp.center, temp.parent.center, 5)
+			temp = temp.parent #temp now equals parent value
 			
-	def drawCircle(self, screen):
-		node = self.goal
-		cPath = self.pathColor
-		while (node.parent != None):
-			pygame.draw.circle(screen, cPath, node.parent.center, 5, 5)
-			node = node.parent
+	def drawCircle(self, screen): #draws circles on the path from goal to start
+		temp = self.goal #temp variable uses goal value
+		cPath = self.pathColor #purple color value
+		while (temp.parent != None): #when parent isn't none...draw circle
+			pygame.draw.circle(screen, cPath, temp.parent.center, 5, 5)
+			temp = temp.parent #temp now equals parent value

@@ -24,7 +24,7 @@ def main():
 		searchSpace.append(temp)
 		trackNode += temp[0].height + temp[0].margin
 	program = AStar(searchSpace[randStart][randStart], searchSpace, searchSpace[randGoal][randGoal])
-	
+	                               #y         #x                                   #y        #x
 	for a in searchSpace:
 		for b in a:
 			randGrid = randrange(0, 5)
