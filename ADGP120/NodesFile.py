@@ -19,3 +19,19 @@ class Node(object): #node class
 	def draw(self, screen): #draw function
 		c = self.color if (self.walkable) else (255,0,0) #walkable = white, unwalkable = red
 		pygame.draw.rect(screen, c, (self.x, self.y, self.width, self.height)) #used to generate grid
+		
+	def setG(self, value):
+		self.g = value
+		self.f = self.getF()
+		return self.g
+		
+	def setH(self, value):
+		self.h = value
+		self.f = self.getF()
+		return self.h
+		
+	def getF(self):
+		if self.g and self.h == None:
+			self.g = 0
+			self.h = 0
+		return self.g + self.h
