@@ -1,7 +1,6 @@
-import pygame, NodesFile, time #using pygame and NodesFile
+import pygame, NodesFile #using pygame and NodesFile
 from pygame import * #import everything
 from NodesFile import * #import everything
-from time import *
 
 class AStar(object): #astar class
 	def __init__(self, start, searchSpace, goal): #init function
@@ -66,6 +65,7 @@ class AStar(object): #astar class
 						if (travelCost < a.g):
 							a.parent = self.current
 							a.setG(self.getGCost(self.current, a))
+							a.setH(self.getHCost(self.goal, a))
 							self.OPENList.sort(key = lambda x : x.f)
 		return False
 		

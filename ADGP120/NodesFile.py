@@ -20,18 +20,17 @@ class Node(object): #node class
 		c = self.color if (self.walkable) else (255,0,0) #walkable = white, unwalkable = red
 		pygame.draw.rect(screen, c, (self.x, self.y, self.width, self.height)) #used to generate grid
 		
-	def setG(self, value):
-		self.g = value
-		self.f = self.getF()
-		return self.g
+	def setG(self, value): #function that sets and returns g value
+		self.g = value #g becomes this value
+		return self.g #return g
 		
-	def setH(self, value):
-		self.h = value
-		self.f = self.getF()
-		return self.h
+	def setH(self, value): #function that sets and returns h value
+		self.h = value #h becomes this value
+		return self.h #return h
 		
-	def getF(self):
-		if self.g and self.h == None:
-			self.g = 0
-			self.h = 0
-		return self.g + self.h
+	def getF(self): #function that return the sum of g and h
+		if self.g and self.h == None: #if both g and h is NULL...
+			self.g = 0 #g's value is/becomes zero
+			self.h = 0 #h's value is/becomes zero
+		self.f = self.g + self.h #f equals sum
+		return self.f #return sum
