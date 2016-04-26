@@ -98,10 +98,9 @@ class AStar(object): #astar class
 					row = [a,b]
 				if (self.searchSpace[a][b] == node2): #columns
 					column = [a,b]
-		#distance = [abs(row[0] - column[0]), abs(row[1] - column[1])]
-		distanceA = abs(row[0] - column[0])
-		distanceB = abs(row[1] - column[1])
-		hCost = (distanceA * 10) + (distanceB * 10)
+		distanceA = abs(row[0] - column[0]) #obtain absolute value
+		distanceB = abs(row[1] - column[1]) #obtain absolute value
+		hCost = (distanceA * 10) + (distanceB * 10) #multiply both distances by ten and add them
 		return hCost #return cost
 		
 	def getGCost(self, node1, node2): #calculates g
