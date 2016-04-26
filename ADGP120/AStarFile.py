@@ -1,7 +1,7 @@
-import pygame, NodesFile, math #using pygame and NodesFile
+import pygame, NodesFile, math #using pygame, NodesFile and math
 from pygame import * #import everything
 from NodesFile import * #import everything
-from math import *
+from math import * #import everything
 
 class AStar(object): #astar class
 	def __init__(self, start, searchSpace, goal): #init function
@@ -15,7 +15,6 @@ class AStar(object): #astar class
 		self.startColor = (255,255,0) #yellow color value
 		self.goalColor = (0,255,0) #green color value
 		self.pathColor = (255,0,255) #purple color value
-		self.nodePathColor = (0,255,255) #teal color value
 		self.lowestF = None #what the lowest f is
 		self.hCost = 0 #what the h cost is
 		self.gCost = 0 #what the g cost is
@@ -26,15 +25,10 @@ class AStar(object): #astar class
 		pygame.draw.rect(screen, cStart, (self.start.x, self.start.y, self.start.width, self.start.height))
 		pygame.draw.rect(screen, cGoal, (self.goal.x, self.goal.y, self.goal.width, self.goal.height))
 		
-	def startSetup(self):#, screen): 
+	def startSetup(self):
 		self.current = self.start
-		#self.current.g = 0
-		#self.current.h = 0
-		#self.current.g = self.getGCost(self.current, self.goal)
-		#self.current.h = self.getHCost(self.current, self.goal)
 		self.OPENList.append(self.current) 
-		#while self.current in self.OPENList:
-		adjacent = self.locateAdjacent()#screen
+		adjacent = self.locateAdjacent()
 		for a in adjacent:
 			if (a.walkable == True):
 				a.parent = self.current
@@ -70,18 +64,18 @@ class AStar(object): #astar class
 							self.OPENList.sort(key = lambda x : x.f)
 		return False
 		
-	def locateAdjacent(self):#, screen): #function that finds current node adjacents
+	def locateAdjacent(self): #function that finds current node adjacents
 		ADJACENTList = self.ADJACENTList
 		for a,nodes in enumerate(self.searchSpace): #get current node
 			for b,node in enumerate(nodes):
 				if node == self.current:
 					position = (b, a)
 		for a,nodes in enumerate(self.searchSpace): #get adjacent nodes
-			if (position[1] - 1 <= a <= position[1] + 1): #and (a != None):
+			if (position[1] - 1 <= a <= position[1] + 1): 
 				for b,node in enumerate(nodes):
 					if (position[0] - 1 <= b <= position[0] + 1) and (self.searchSpace[a][b].walkable == True) and (self.searchSpace[a][b] != self.current):
 						ADJACENTList.append(self.searchSpace[a][b])
-		return ADJACENTList # (b != None) and
+		return ADJACENTList
 		
 	def lowestFCost(self, nodes): #lowest f cost function. used to fine lowest f
 		lowestF = self.lowestF
