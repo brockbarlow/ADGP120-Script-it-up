@@ -38,13 +38,13 @@ class AStar(object): #astar class
 		self.OPENList.remove(self.current)
 		self.CLOSEList.append(self.current)
 			
-	def run(self):#, screen):
-		self.startSetup()#screen
+	def run(self):
+		self.startSetup()
 		while (len(self.OPENList) > 0):
 			self.current = self.lowestFCost(self.OPENList)
 			self.OPENList.remove(self.current)
 			self.CLOSEList.append(self.current)
-			adjacentNode = self.locateAdjacent()#screen
+			adjacentNode = self.locateAdjacent()
 			for a in adjacentNode:
 				if (a not in self.CLOSEList):
 					if (a not in self.OPENList):
