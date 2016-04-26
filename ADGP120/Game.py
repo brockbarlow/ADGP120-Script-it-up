@@ -1,9 +1,9 @@
-import pygame, NodesFile, AStarFile, random, time
-from pygame import *
-from NodesFile import *
-from AStarFile import *
-from random import *
-from time import *
+import pygame, NodesFile, AStarFile, random, time #using pygame, NodesFile, AStarFile, random and time
+from pygame import * #import everything
+from NodesFile import * #import everything
+from AStarFile import * #import everything
+from random import * #import everything
+from time import * #import everything
 
 def main():
 	pygame.init()
@@ -35,6 +35,7 @@ def main():
 	program.draw(screen)
 	program.run()#screen)
 	program.drawPath(screen)
+	program.drawCircle(screen)
 	
 	finished = False
 	clock = pygame.time.Clock()

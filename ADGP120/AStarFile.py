@@ -128,3 +128,10 @@ class AStar(object): #astar class
 		while (node.parent != None):
 			pygame.draw.line(screen, cPath, node.center, node.parent.center, 5)
 			node = node.parent
+			
+	def drawCircle(self, screen):
+		node = self.goal
+		cPath = self.pathColor
+		while (node.parent != None):
+			pygame.draw.circle(screen, cPath, node.parent.center, 5, 5)
+			node = node.parent
