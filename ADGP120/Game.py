@@ -31,7 +31,7 @@ def main():
 			b.draw(screen)
 			
 	program.draw(screen)
-	program.run(screen)
+	program.run()#screen)
 	program.drawPath(screen)
 	
 	finished = False

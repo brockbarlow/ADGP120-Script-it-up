@@ -14,7 +14,7 @@ class AStar(object): #astar class
 		self.startColor = (255,255,0) #yellow color value
 		self.goalColor = (0,255,0) #green color value
 		self.pathColor = (255,0,255) #purple color value
-		self.adjacentColor = (0,255,255) #teal color value
+		#self.adjacentColor = (0,255,255) #teal color value
 		self.lowestF = None #what the lowest f is
 		self.hCost = 0 #what the h cost is
 		self.gCost = 0 #what the g cost is
@@ -25,7 +25,7 @@ class AStar(object): #astar class
 		pygame.draw.rect(screen, cStart, (self.start.x, self.start.y, self.start.width, self.start.height))
 		pygame.draw.rect(screen, cGoal, (self.goal.x, self.goal.y, self.goal.width, self.goal.height))
 		
-	def startSetup(self, screen): 
+	def startSetup(self):#, screen): 
 		self.current = self.start
 		#self.current.g = 0
 		#self.current.h = 0
@@ -43,8 +43,8 @@ class AStar(object): #astar class
 		self.OPENList.remove(self.current)
 		self.CLOSEList.append(self.current)
 			
-	def run(self, screen):
-		self.startSetup(screen)
+	def run(self):#, screen):
+		self.startSetup()#screen
 		while (len(self.OPENList) > 0):
 			self.current = self.lowestFCost(self.OPENList)
 			self.OPENList.remove(self.current)
