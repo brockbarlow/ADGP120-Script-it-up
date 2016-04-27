@@ -1,15 +1,14 @@
-import pygame, NodesFile, AStarFile, random, time #using pygame, NodesFile, AStarFile, random and time
+import pygame, NodesFile, AStarFile, random #using pygame, NodesFile, AStarFile and random
 from pygame import * #import everything
 from NodesFile import * #import everything
 from AStarFile import * #import everything
 from random import * #import everything
-from time import * #import everything
 
 def main():
 	pygame.init()
 	window = [622,472]
 	screen = pygame.display.set_mode(window)
-	pygame.display.set_caption("AStar")
+	pygame.display.set_caption("ADGP120 Script It Up - AStar")
 	searchSpace = []
 	temp = []
 	trackNode = 0
@@ -28,8 +27,9 @@ def main():
 	for a in searchSpace:
 		for b in a:
 			randGrid = randrange(0, 5)
-			if (randGrid % 3 == 0) and (program.goal != b) and (program.start != b):
-				b.walkable = False
+			if (randGrid % 3 == 0):
+				if (program.goal != b) and (program.start != b):
+					b.walkable = False
 			b.draw(screen)
 			
 	program.draw(screen)
@@ -38,12 +38,10 @@ def main():
 	program.drawCircle(screen)
 	
 	finished = False
-	clock = pygame.time.Clock()
 	while not finished:
 		for event in pygame.event.get():
 			if event.type == pygame.QUIT:
 				finished = True	
-		clock.tick(60)
 		pygame.display.flip()
 	pygame.quit()
 	
