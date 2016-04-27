@@ -57,16 +57,16 @@ class AStar(object): #astar class
 	def locateAdjacent(self): #function that finds current node adjacents
 		ADJACENTList = self.ADJACENTList
 		for a,nodes in enumerate(self.searchSpace): #get current node
-			for b,node in enumerate(nodes):
+			for b,node in enumerate(nodes): #enumerate returns a iterator (or sequence). [(a, node[0]),(a, node[1])...]
 				if (node == self.current):
 					position = (a, b)
 		for a,nodes in enumerate(self.searchSpace): #get adjacent nodes
 			if (position[0] - 1 <= a <= position[0] + 1):
-				for b,node in enumerate(nodes):
+				for b,node in enumerate(nodes): #enumerate returns a iterator (or sequence). [(a, node[0]),(a, node[1])...]
 					if (position[1] - 1 <= b <= position[1] + 1):
 						if (self.searchSpace[a][b].walkable == True) and (self.searchSpace[a][b] != self.current):
 							ADJACENTList.append(self.searchSpace[a][b])
-		return ADJACENTList
+		return ADJACENTList 
 		
 	def lowestFCost(self, nodes): #lowest f cost function. used to fine lowest f
 		lowestF = self.lowestF
