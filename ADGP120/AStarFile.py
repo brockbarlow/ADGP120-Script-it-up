@@ -5,7 +5,7 @@ from math import * #import everything
 
 class AStar(object): #astar class
 	def __init__(self, start, searchSpace, goal): #init function
-		self.OPENList = [] #holds possible paths
+		self.OPENList = [] #holds nodes that need to be calculated
 		self.CLOSEList = [] #when calculations are done, add to this list
 		self.ADJACENTList = [] #nodes that surround the current node
 		self.start = start #start node
@@ -24,8 +24,8 @@ class AStar(object): #astar class
 		cGoal = self.goalColor
 		pygame.draw.rect(screen, cStart, (self.start.x, self.start.y, self.start.width, self.start.height))
 		pygame.draw.rect(screen, cGoal, (self.goal.x, self.goal.y, self.goal.width, self.goal.height))
-		
-	def startSetup(self): #setup function
+			
+	def run(self): #run function
 		self.current = self.start #current is start
 		self.OPENList.append(self.current) #add current to open list
 		adjacent = self.locateAdjacent() #call locateAdjacent function
@@ -37,9 +37,6 @@ class AStar(object): #astar class
 				self.OPENList.append(a)
 		self.OPENList.remove(self.current) #remove current from open
 		self.CLOSEList.append(self.current) #add current to closed
-			
-	def run(self): #run function
-		self.startSetup() #call this function
 		while (len(self.OPENList)): 
 			self.current = self.lowestFCost(self.OPENList)
 			self.OPENList.remove(self.current)
@@ -61,13 +58,14 @@ class AStar(object): #astar class
 		ADJACENTList = self.ADJACENTList
 		for a,nodes in enumerate(self.searchSpace): #get current node
 			for b,node in enumerate(nodes):
-				if node == self.current:
+				if (node == self.current):
 					position = (a, b)
 		for a,nodes in enumerate(self.searchSpace): #get adjacent nodes
 			if (position[0] - 1 <= a <= position[0] + 1):
 				for b,node in enumerate(nodes):
-					if (position[1] - 1 <= b <= position[1] + 1) and (self.searchSpace[a][b].walkable == True) and (self.searchSpace[a][b] != self.current):
-						ADJACENTList.append(self.searchSpace[a][b])
+					if (position[1] - 1 <= b <= position[1] + 1):
+						if (self.searchSpace[a][b].walkable == True) and (self.searchSpace[a][b] != self.current):
+							ADJACENTList.append(self.searchSpace[a][b])
 		return ADJACENTList
 		
 	def lowestFCost(self, nodes): #lowest f cost function. used to fine lowest f
@@ -85,8 +83,8 @@ class AStar(object): #astar class
 					row = [a,b]
 				if (self.searchSpace[a][b] == pos2): #columns
 					column = [a,b]
-		distanceA = abs(row[0] - column[0]) #obtain absolute value
-		distanceB = abs(row[1] - column[1]) #obtain absolute value
+		distanceA = abs(row[0] - column[0]) #obtain absolute value of first distance
+		distanceB = abs(row[1] - column[1]) #obtain absolute value of second distance
 		hCost = (distanceA * 10) + (distanceB * 10) #multiply both distances by ten and add them
 		return hCost #return cost
 		
@@ -98,8 +96,8 @@ class AStar(object): #astar class
 					row = [a,b]
 				if (self.searchSpace[a][b] == pos2): #columns
 					column = [a,b]
-		distanceA = abs(row[0] - column[0]) #obtain absolute value
-		distanceB = abs(row[1] - column[1]) #obtain absolute value
+		distanceA = abs(row[0] - column[0]) #obtain absolute value of first distance
+		distanceB = abs(row[1] - column[1]) #obtain absolute value of second distance
 		A = distanceA * distanceA #multiply disA with disA
 		B = distanceB * distanceB #multiply disB with disB
 		C = A + B #add A and B
