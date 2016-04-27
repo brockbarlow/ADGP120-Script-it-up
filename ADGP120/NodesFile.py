@@ -22,10 +22,12 @@ class Node(object): #node class
 		
 	def setG(self, value): #function that sets and returns g value
 		self.g = value #g becomes this value
+		self.f = self.getF() #call get f function
 		return self.g #return g
 		
 	def setH(self, value): #function that sets and returns h value
 		self.h = value #h becomes this value
+		self.f = self.getF() #call get f function
 		return self.h #return h
 		
 	def getF(self): #function that return the sum of g and h
