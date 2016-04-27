@@ -33,6 +33,8 @@ def main():
 			
 	program.draw(screen)
 	program.run()
+	program.drawNodePath(screen)
+	program.drawGoal(screen)
 	program.drawPath(screen)
 	program.drawCircle(screen)
 	
@@ -43,5 +45,4 @@ def main():
 				finished = True	
 		pygame.display.flip()
 	pygame.quit()
-	
 main()
