@@ -6,18 +6,18 @@ from random import * #import everything
 
 def main():
 	pygame.init()
-	window = [622,472] #set window size
+	window = [997,797] #set window size
 	screen = pygame.display.set_mode(window)
 	pygame.display.set_caption("ADGP120 Script It Up - AStar") #name on window
 	searchSpace = [] #array variable
 	tracker = 0 #used for tracking
 	n = Node(0, 0) #node object
 	
-	for a in range(0, 19):
-		randStart = randrange(0, 19)
-		randGoal = randrange(0, 19)
+	for a in range(0, 32):
+		randStart = randrange(0, 32)
+		randGoal = randrange(0, 32)
 		temp = [] #holds new node object
-		for b in range(0, 25):
+		for b in range(0, 55):
 			temp.append(Node(b * (n.width + n.margin), tracker)) #add new node object to array
 		searchSpace.append(temp)
 		tracker += temp[0].height + temp[0].margin
