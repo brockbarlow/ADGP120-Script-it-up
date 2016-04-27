@@ -37,10 +37,10 @@ class AStar(object): #astar class
 				self.OPENList.append(a)
 		self.OPENList.remove(self.current) #remove current from open
 		self.CLOSEList.append(self.current) #add current to closed
-		while (len(self.OPENList)): 
-			self.current = self.lowestFCost(self.OPENList)
-			self.OPENList.remove(self.current)
-			self.CLOSEList.append(self.current)
+		while (len(self.OPENList)): #while open list has data...
+			self.current = self.lowestFCost(self.OPENList) #current is now lowest f node
+			self.OPENList.remove(self.current) #remove current from open
+			self.CLOSEList.append(self.current) #add current to closed
 			adjacentNode = self.locateAdjacent()
 			for a in adjacentNode:
 				if (a not in self.CLOSEList):
