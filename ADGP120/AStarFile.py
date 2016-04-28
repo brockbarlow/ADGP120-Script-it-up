@@ -48,7 +48,7 @@ class AStar(object): #astar class
 			for a in adjacentNode:
 				if (a not in self.CLOSEList):
 					if (a not in self.OPENList):
-						if (self.goal in self.OPENList) or (self.current == self.goal):
+						if (self.goal in self.CLOSEList) or (self.current == self.goal):
 							return True
 						else:
 							a.parent = self.current

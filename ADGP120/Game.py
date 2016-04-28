@@ -21,7 +21,7 @@ def main():
 			temp.append(Node(b * (n.width + n.margin), tracker)) #add new node object to array
 		searchSpace.append(temp)
 		tracker += temp[0].height + temp[0].margin
-	program = AStar(searchSpace[randStart][randStart], searchSpace, searchSpace[randGoal][randGoal])
+	program = AStar(searchSpace[randStart][randStart], searchSpace, searchSpace[randGoal][randGoal]) #AStar object
 	                             
 	for a in searchSpace: #used to randomize walkable paths
 		for b in a:
