@@ -30,9 +30,10 @@ class Node(object): #node class
 		self.f = self.getF() #call get f function
 		return self.h #return h
 		
-	def getF(self): #function that return the sum of g and h
-		if self.g and self.h == None: #if both g and h is NULL...
+	def getF(self): #function that returns the sum of g and h
+		if self.g == None: #if g is NULL...
 			self.g = 0 #g's value is/becomes zero
+		if self.h == None: #if h is NULL...
 			self.h = 0 #h's value is/becomes zero
 		self.f = self.g + self.h #f equals sum
 		return self.f #return sum
