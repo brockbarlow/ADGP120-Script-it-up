@@ -88,7 +88,7 @@ class AStar(object): #astar class
 					column = [a,b]
 		distanceA = abs(row[0] - column[0]) #obtain absolute value of first distance
 		distanceB = abs(row[1] - column[1]) #obtain absolute value of second distance
-		hCost = (distanceA * 10) + (distanceB * 10) #multiply both distances by ten and add them
+		hCost = 10 * (distanceA + distanceB) #add both distances and multiply by ten
 		return hCost #return cost
 		
 	def getGCost(self, pos1, pos2): #calculates g
