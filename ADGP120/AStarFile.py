@@ -14,8 +14,7 @@ class AStar(object): #astar class
 		self.searchSpace = searchSpace #search range
 		self.startColor = (255,255,0) #yellow color value
 		self.goalColor = (0,255,0) #green color value
-		self.pathColor = (255,0,255) #purple color value
-		self.nodePathColor = (0,155,255) #sky blue color value
+		self.pathColor = (139,69,19) 
 		self.lowestF = None #what the lowest f is
 		self.hCost = 0 #what the h cost is
 		self.gCost = 0 #what the g cost is
@@ -23,8 +22,6 @@ class AStar(object): #astar class
 	def draw(self, screen): #draws start node
 		cStart = self.startColor #yellow color value
 		pygame.draw.rect(screen, cStart, (self.start.x, self.start.y, self.start.width, self.start.height))
-		
-	def drawGoal(self, screen): #draws goal node
 		cGoal = self.goalColor #green color value
 		pygame.draw.rect(screen, cGoal, (self.goal.x, self.goal.y, self.goal.width, self.goal.height))
 			
@@ -113,17 +110,3 @@ class AStar(object): #astar class
 		while (temp.parent != None): #when parent isn't none...draw line
 			pygame.draw.line(screen, cPath, temp.center, temp.parent.center, 5)
 			temp = temp.parent 
-			
-	def drawCircle(self, screen): #draws circles on the path from goal to start
-		temp = self.goal #temp variable uses goal value
-		cPath = self.pathColor #purple color value
-		while (temp.parent != None): #when parent isn't none...draw circle
-			pygame.draw.circle(screen, cPath, temp.parent.center, 5, 5)
-			temp = temp.parent 
-			
-	def drawNodePath(self, screen): #highlights the nodes the path takes from goal to start
-		temp = self.goal #temp variable uses goal value
-		cNP = self.nodePathColor #sky blue color value
-		while (temp.parent != None): #when parent isn't none...draw node path
-			pygame.draw.rect(screen, cNP, (temp.x, temp.y, temp.width, temp.height))
-			temp = temp.parent

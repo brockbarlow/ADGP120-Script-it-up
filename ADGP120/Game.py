@@ -12,6 +12,9 @@ def main():
 	searchSpace = [] #array variable
 	tracker = 0 #used for tracking
 	n = Node(0, 0) #node object
+	colorTeal = (0,255,255)
+	colorBlue = (0,0,255)
+	colorPink = (255,105,180)
 	
 	for a in range(0, 32):
 		randStart = randrange(0, 32)
@@ -33,10 +36,22 @@ def main():
 			
 	program.draw(screen)
 	program.run()
-	program.drawNodePath(screen)
-	program.drawGoal(screen)
+	
+	for o in program.OPENList:
+			if o != program.goal:
+				pygame.draw.rect(screen, colorBlue, (o.x, o.y, o.width, o.height))
+				
+	for c in program.CLOSEList:
+			if (c != program.start) and (c != program.goal):
+				pygame.draw.rect(screen, colorTeal, (c.x, c.y, c.width, c.height))
+				
+	for s in program.searchSpace:
+		for p in s:
+			if p.parent != None:
+				pygame.draw.line(screen, colorPink, p.center, p.parent.center, 5)
+				pygame.draw.circle(screen, colorPink, p.center, 5, 0)
+	
 	program.drawPath(screen)
-	program.drawCircle(screen)
 	
 	finished = False
 	while not finished:
