@@ -1,8 +1,8 @@
 import pygame #using pygame
 from pygame import * #import everything
 
-class Node(object): #node class
-	def __init__(self, x, y): #init function
+class Node(object): #node class. used to create node objects
+	def __init__(self, x, y): #init function. used to setup variables
 		self.x = x #x value
 		self.y = y #y value
 		self.f = None #g + h
@@ -21,13 +21,13 @@ class Node(object): #node class
 		pygame.draw.rect(screen, c, (self.x, self.y, self.width, self.height)) #used to generate grid
 		
 	def setG(self, value): #function that sets and returns g value
-		self.g = value #g becomes this value
-		self.f = self.getF() #call get f function
+		self.g = value #g becomes value
+		self.f = self.getF() #f equals getF value
 		return self.g #return g
 		
 	def setH(self, value): #function that sets and returns h value
-		self.h = value #h becomes this value
-		self.f = self.getF() #call get f function
+		self.h = value #h becomes value
+		self.f = self.getF() #f equals getF value
 		return self.h #return h
 		
 	def getF(self): #function that returns the sum of g and h

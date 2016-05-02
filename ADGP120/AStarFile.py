@@ -3,8 +3,8 @@ from pygame import * #import everything
 from NodesFile import * #import everything
 from math import * #import everything
 
-class AStar(object): #astar class
-	def __init__(self, start, searchSpace, goal): #init function
+class AStar(object): #astar class. used to create astar objects
+	def __init__(self, start, searchSpace, goal): #init function. used to setup variables
 		self.OPENList = [] #holds nodes that need to be calculated
 		self.CLOSEList = [] #when calculations are done, add to this list
 		self.ADJACENTList = [] #nodes that surround the current node
@@ -14,12 +14,12 @@ class AStar(object): #astar class
 		self.searchSpace = searchSpace #search range
 		self.startColor = (255,255,0) #yellow color value
 		self.goalColor = (0,255,0) #green color value
-		self.pathColor = (139,69,19) 
-		self.lowestF = None #what the lowest f is
-		self.hCost = 0 #what the h cost is
-		self.gCost = 0 #what the g cost is
+		self.pathColor = (139,69,19) #brown color value
+		self.lowestF = None #holds lowest f
+		self.hCost = 0 #holds h cost
+		self.gCost = 0 #holds g cost
 		
-	def draw(self, screen): #draws start node
+	def draw(self, screen): #draws start node and goal node
 		cStart = self.startColor #yellow color value
 		pygame.draw.rect(screen, cStart, (self.start.x, self.start.y, self.start.width, self.start.height))
 		cGoal = self.goalColor #green color value
