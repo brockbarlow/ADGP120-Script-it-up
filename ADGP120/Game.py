@@ -7,34 +7,34 @@ from random import * #import everything
 def main(): #main function. 
 	pygame.init() #init pygame
 	window = [997,797] #set window size
-	screen = pygame.display.set_mode(window)
+	screen = pygame.display.set_mode(window) #setup screen to display window variable
 	pygame.display.set_caption("ADGP120 Script It Up - AStar") #name on window
-	searchSpace = [] #array variable
-	tracker = 0 #used for tracking
+	searchSpace = [] #searchSpace list
+	tracker = 0 #used for tracking the nodes height position
 	n = Node(0, 0) #node object
-	colorTeal = (0,255,255)
-	colorBlue = (0,0,255)
-	colorPink = (255,105,180)
+	colorTeal = (0,255,255) #teal color value
+	colorBlue = (0,0,255) #blue color value
+	colorPink = (255,105,180) #pink color value
 	
-	for a in range(0, 32):
-		randStart = randrange(0, 32)
-		randGoal = randrange(0, 32)
-		temp = [] #holds new node object
-		for b in range(0, 55):
-			temp.append(Node(b * (n.width + n.margin), tracker)) #add new node object to array
-		searchSpace.append(temp)
-		tracker += temp[0].height + temp[0].margin
-	program = AStar(searchSpace[randStart][randStart], searchSpace, searchSpace[randGoal][randGoal]) #AStar object
+	for a in range(0, 32): #this range determines how many rows for the grid
+		randStart = randrange(0, 32) #determines where the start node will spawn
+		randGoal = randrange(0, 32) #determines where the goal node will spawn
+		temp = [] #temp list, holds new node object
+		for b in range(0, 55): #this range determines how many columns for the grid
+			temp.append(Node(b * (n.width + n.margin), tracker)) #add new node object to list
+		searchSpace.append(temp) #add temp to searchSpace list
+		tracker += temp[0].height + temp[0].margin #the temp index height + margin value and adds it to the tracker variable
+	program = AStar(searchSpace[randStart][randStart], searchSpace, searchSpace[randGoal][randGoal]) #AStar object. takes start node first, then searchSpace list, then goal node
 	                             
 	for a in searchSpace: #used to randomize walkable paths
-		for b in a:
-			randGrid = randrange(0, 5)
-			if (randGrid % 3 == 0):
-				if (program.goal != b) and (program.start != b):
-					b.walkable = False
-			b.draw(screen)
+		for b in a: #used to randomize walkable paths
+			randGrid = randrange(0, 5) #range the random values use
+			if (randGrid % 3 == 0): #if the value mod 3 equal to zero...move to next step
+				if (program.goal != b) and (program.start != b): #if goal and start do not equal b...
+					b.walkable = False #walkable is false
+			b.draw(screen) #generates grid
 			
-	program.draw(screen)
+	program.draw(screen) 
 	program.run()
 	
 	for o in program.OPENList:
