@@ -4,8 +4,8 @@ from NodesFile import * #import everything
 from AStarFile import * #import everything
 from random import * #import everything
 
-def main():
-	pygame.init()
+def main(): #main function. 
+	pygame.init() #init pygame
 	window = [997,797] #set window size
 	screen = pygame.display.set_mode(window)
 	pygame.display.set_caption("ADGP120 Script It Up - AStar") #name on window

@@ -108,5 +108,5 @@ class AStar(object): #astar class. used to create astar objects
 		temp = self.goal #temp variable uses goal value
 		cPath = self.pathColor #brown color value
 		while (temp.parent != None): #when parent isn't none...draw line
-			pygame.draw.line(screen, cPath, temp.center, temp.parent.center, 5)
-			temp = temp.parent 
+			pygame.draw.line(screen, cPath, temp.center, temp.parent.center, 5) #draws path to goal node. this is the shortest path line
+			temp = temp.parent #change temps value
