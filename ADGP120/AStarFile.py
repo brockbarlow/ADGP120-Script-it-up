@@ -28,30 +28,35 @@ class AStar(object): #astar class. used to create astar objects
 	def run(self): #run function. This "runs" the astar algorithm
 		self.current = self.start #current is start
 		self.OPENList.append(self.current) #add current to open list
-		adjacent = self.locateAdjacent() #holds adjacent list values
+		adjacent = self.locateAdjacent() #find the adjacents
 		for a in adjacent: #for everything in adjacent...
 			if (a.walkable == True): #if true...do this
 				a.parent = self.current #"a"s parent equals current
-				a.g = self.getGCost(a, self.current) #g has new cost value
-				a.h = self.getHCost(a, self.goal) #h has new cost value
+				a.setG = self.getGCost(a, self.current) #g has new cost value
+				a.setH = self.getHCost(a, self.goal) #h has new cost value
 				self.OPENList.append(a) #add a to open list
 		self.OPENList.remove(self.current) #remove current from open
 		self.CLOSEList.append(self.current) #add current to closed
-		while (len(self.OPENList)): #while open list has data...
-			self.current = self.lowestFCost(self.OPENList) #current is now lowest f node
+		while (self.OPENList): #while open list has data...
+			self.current = self.lowestFCost(self.OPENList) #find the lowest f node in the open list and apply it to current
 			self.OPENList.remove(self.current) #remove current from open
 			self.CLOSEList.append(self.current) #add current to closed
-			adjacentNode = self.locateAdjacent() #new value holds adjacent list values
-			for a in adjacentNode: #for everything in adjacentNode...
-				if (a not in self.CLOSEList): #if a is not included in the close list...move on
-					if (a not in self.OPENList): #if a is not included in the open list...move on
-						if (self.goal in self.CLOSEList) or (self.current == self.goal): #if the goal node is in the closed list or if current node is equal to the goal node...
+			adjacentNode = self.locateAdjacent() #find the adjacents
+			if (self.goal in self.CLOSEList) or (self.current == self.goal): #if the goal node is in the closed list or if current node is equal to the goal node...
 							return True #stop and return true
-						else: #otherwise...
+			for a in adjacentNode: #for everything in adjacentNode...
+				if (a not in self.CLOSEList): #if a is not included in the close list...move on to next check
+					if (a not in self.OPENList): #if a is not included in the open list...move on to next check
+						a.parent = self.current #"a"s parent equals current
+						a.setG = self.getGCost(a, self.current) #g has new cost value
+						a.setH = self.getHCost(a, self.goal) #h has new cost value
+						self.OPENList.append(a) #add a to open list
+					else: #otherwise...
+						costToMove = self.current.g + self.getGCost(a, self.current) #this variable holds the sum of currents g cost and the value from getGCost
+						if (costToMove < a.g): #if costToMove value is last than a's current g cost...
 							a.parent = self.current #"a"s parent equals current
-							a.g = self.getGCost(a, self.current) #g has new cost value
-							a.h = self.getHCost(a, self.goal) #h has new cost value
-							self.OPENList.append(a) #add a to open list
+							a.setG = self.getGCost(a, self.current) #g has new cost value
+							self.OPENList.sort() #sort the open list
 		return False #if not true, return false
 		
 	def locateAdjacent(self): #function that finds current node adjacents
