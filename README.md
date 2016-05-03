@@ -21,3 +21,5 @@ Color Details:
 -Dark Blue colored blocks represents: uncalculated nodes (nodes that are still in the open list)
 -Brown colored lines represents: parent nodes
 -Pink colored line represents: most efficient cost path
+
+Every time the runit.bat executes the information displayed in the pygame window will change. This is due to how the walkable, unwalkable, start and goal nodes are set up. They are setup randomly.
