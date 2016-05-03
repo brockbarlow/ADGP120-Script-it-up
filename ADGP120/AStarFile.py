@@ -14,7 +14,7 @@ class AStar(object): #astar class. used to create astar objects
 		self.searchSpace = searchSpace #search range
 		self.startColor = (255,255,0) #yellow color value
 		self.goalColor = (0,255,0) #green color value
-		self.pathColor = (139,69,19) #brown color value
+		self.pathColor = (255,105,180) #pink color value
 		self.lowestF = None #holds lowest f
 		self.hCost = 0 #holds h cost
 		self.gCost = 0 #holds g cost
@@ -111,7 +111,7 @@ class AStar(object): #astar class. used to create astar objects
 		
 	def drawPath(self, screen): #draws the path from goal to start
 		temp = self.goal #temp variable uses goal value
-		cPath = self.pathColor #brown color value
+		cPath = self.pathColor #pink color value
 		while (temp.parent != None): #when parent isn't none...draw line
 			pygame.draw.line(screen, cPath, temp.center, temp.parent.center, 5) #draws path to goal node. this is the shortest path line
 			temp = temp.parent #change temps value

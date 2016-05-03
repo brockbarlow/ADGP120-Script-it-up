@@ -6,7 +6,7 @@ from random import * #import everything
 
 def main(): #main function. 
 	pygame.init() #init pygame
-	window = [997,797] #set window size
+	window = [627,505] #set window size
 	screen = pygame.display.set_mode(window) #setup screen to display window variable
 	pygame.display.set_caption("ADGP120 Script It Up - AStar") #name on window
 	searchSpace = [] #searchSpace list
@@ -14,13 +14,13 @@ def main(): #main function.
 	n = Node(0, 0) #node object
 	colorTeal = (0,255,255) #teal color value
 	colorBlue = (0,0,255) #blue color value
-	colorPink = (255,105,180) #pink color value
+	colorBrown = (139,69,19) #brown color value
 	
-	for a in range(0, 32): #this range determines how many rows for the grid
-		randStart = randrange(0, 32) #determines where the start node will spawn
-		randGoal = randrange(0, 32) #determines where the goal node will spawn
+	for a in range(0, 20): #this range determines how many rows for the grid
+		randStart = randrange(0, 20) #determines where the start node will spawn
+		randGoal = randrange(0, 20) #determines where the goal node will spawn
 		temp = [] #temp list, holds new node object
-		for b in range(0, 55): #this range determines how many columns for the grid
+		for b in range(0, 25): #this range determines how many columns for the grid
 			temp.append(Node(b * (n.width + n.margin), tracker)) #add new node object to list
 		searchSpace.append(temp) #add temp to searchSpace list
 		tracker += temp[0].height + temp[0].margin #the temp index height + margin value and adds it to the tracker variable
@@ -48,8 +48,8 @@ def main(): #main function.
 	for s in program.searchSpace:
 		for p in s:
 			if p.parent != None:
-				pygame.draw.line(screen, colorPink, p.center, p.parent.center, 5)
-				pygame.draw.circle(screen, colorPink, p.center, 5, 0)
+				pygame.draw.line(screen, colorBrown, p.center, p.parent.center, 5)
+				pygame.draw.circle(screen, colorBrown, p.center, 5, 0)
 	
 	program.drawPath(screen)
 	
