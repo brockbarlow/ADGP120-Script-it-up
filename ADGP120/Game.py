@@ -34,28 +34,26 @@ def main(): #main function.
 					b.walkable = False #walkable is false
 			b.draw(screen) #generates grid
 			
-	program.draw(screen) 
-	program.run()
+	program.draw(screen) #calls draw function
+	program.run() #calls run function
 	
-	for o in program.OPENList:
-			if o != program.goal:
-				pygame.draw.rect(screen, colorBlue, (o.x, o.y, o.width, o.height))
-				
-	for c in program.CLOSEList:
-			if (c != program.start) and (c != program.goal):
-				pygame.draw.rect(screen, colorTeal, (c.x, c.y, c.width, c.height))
-				
-	for s in program.searchSpace:
-		for p in s:
-			if p.parent != None:
-				pygame.draw.line(screen, colorBrown, p.center, p.parent.center, 5)
+	for o in program.OPENList: #for everything in the open list...
+			if o != program.goal: #if the node in the open list is not the goal node...
+				pygame.draw.rect(screen, colorBlue, (o.x, o.y, o.width, o.height)) #draw this (blocks will be colored dark blue)		
+	for c in program.CLOSEList: #for everything in the closed list...
+			if (c != program.start) and (c != program.goal): #if the node in the closed list is not the start node...
+				pygame.draw.rect(screen, colorTeal, (c.x, c.y, c.width, c.height)) #draw this (blocks will be colored light blue)				
+	for s in program.searchSpace: #for everything in the searchSpace list...
+		for p in s: #for everything in s...
+			if p.parent != None: #if the parent node has a value...
+				pygame.draw.line(screen, colorBrown, p.center, p.parent.center, 5) #draw these (blocks will have a brown line and circle in them)
 				pygame.draw.circle(screen, colorBrown, p.center, 5, 0)
 	
-	program.drawPath(screen)
+	program.drawPath(screen) #this will draw a pink line. this will show the shortest possible path to the goal node.
 	
-	finished = False
-	while not finished:
-		for event in pygame.event.get():
+	finished = False #set finished variable to false
+	while not finished: #while finished is still false...
+		for event in pygame.event.get(): #searchs for the end event. Once found, return true
 			if event.type == pygame.QUIT:
 				finished = True	
 		pygame.display.flip()
